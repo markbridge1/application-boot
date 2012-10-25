@@ -36,6 +36,7 @@ public class App {
         System.out.println("ENV_ENCRYPTION_PWD=password");
         System.out.println(System.getenv("ENV_ENCRYPTION_PWD").equals("password") + "\n");
         
+        //Boot.init();
         System.out.println("Boot: " + Boot.encrypt("Boot: Hello world!"));
         System.out.println("Boot: " + Boot.decrypt("rsbcrh9WoF8UwDrMQDzlQ7Tg8S6gz1ov") + "\n");
         

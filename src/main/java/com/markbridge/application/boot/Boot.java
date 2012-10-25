@@ -49,6 +49,10 @@ public class Boot {
     private final static StandardPBEStringEncryptor ENC = new StandardPBEStringEncryptor();
     
     static {
+        init();
+    }
+    
+    public static void init() {
         if(BOOT) {
             BOOT = Boolean.FALSE;
             logger.setLevel(Level.FINEST);
@@ -58,13 +62,9 @@ public class Boot {
             encConfig.setSaltGenerator(new RandomSaltGenerator());
             ENC.setConfig(encConfig);
             
-            init();
+            Config.BUNDLE = getBundle("config", getDelimitedText("bootstrap.config", BUNDLE));
+            Res.BUNDLE = getBundle("res", getDelimitedText("bootstrap.res", BUNDLE));
         }
-    }
-    
-    private static void init() {
-        Config.BUNDLE = getBundle("config", getDelimitedText("bootstrap.config", BUNDLE));
-        Res.BUNDLE = getBundle("res", getDelimitedText("bootstrap.res", BUNDLE));
     }
     
     public static String getString(String key, ResourceBundle bundle) {
